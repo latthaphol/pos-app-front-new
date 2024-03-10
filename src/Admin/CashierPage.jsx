@@ -195,7 +195,11 @@ const CashierPage = ({ person }) => {
             selectedPrice: maxPrice ,
             selectedCost: selectedLot.product_lot_cost,
             selectedQuantity: selectedLot.product_lot_qty,
-  
+            product_width: item.product_width,
+            product_length: item.product_length,
+            product_thickness: item.product_thickness,
+            item_id:item.itemset_id,
+
             quantity: totalQuantity,
             description: item.product_detail,
             category: item.product_type,
@@ -247,7 +251,7 @@ const CashierPage = ({ person }) => {
 
   const selectProduct = (product) => {
     // Check if the product category is 'กระจก' (glass).
-    if (product.category === 'กระจก') {
+    if (product.category === 'กระจก'||product.category === 'อลูมิเนียม') {
       // Create a new product object with a unique identifier to ensure it's added as a new item.
       // You might use a combination of the original product ID and a timestamp or a counter for uniqueness.
       const newProduct = {
@@ -255,6 +259,7 @@ const CashierPage = ({ person }) => {
         id: `${product.id}-${new Date().getTime()}`, // Example of making the ID unique.
         product_cost2: product.price * product.quantity
       };
+      
 
       setSelectedProducts([...selectedProducts, newProduct]);
     } else {
@@ -526,7 +531,12 @@ const CashierPage = ({ person }) => {
                         selectedPrice={product.selectedPrice} // Price of the selected lot
                         selectedCost={product.selectedCost} // Cost of the selected lot
                         selectedQuantity={product.selectedQuantity} // Quantity of the selected lot
+                        product_width= {product.product_width}
+                        product_length={product.product_length}
+                        product_thickness= {product.product_thickness}
+                        itemset_id={product.item_id}
 
+                        product_detail ={product.description}
                         product_lot_id={product.product_lot_id}
                         onSelect={(selectedProduct) =>
                           selectProduct({ ...selectedProduct, product_cost2: product.price * selectedProduct.quantity })

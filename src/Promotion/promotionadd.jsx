@@ -74,10 +74,6 @@ function Promotionadd({ person }) {
   },);
 
 
-  useEffect(() => {
-    // console.log("useEffect promotions:", promotions)
-    // console.log("useEffect currentItems:", currentItems)
-  }, [promotions, currentItems]);
 
   //page
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -300,7 +296,7 @@ function Promotionadd({ person }) {
 
 
   const startAutoUpdatePromotionStatus = () => {
-    const interval = 600000; // 10 นาทีในมิลลิวินาที
+    const interval =1800 * 1000 ; // 10 นาทีในมิลลิวินาที
 
     // เรียกใช้ฟังก์ชัน updatePromotionStatus เพื่ออัปเดตสถานะโปรโมชั่น
     const autoUpdatePromotionStatus = async () => {
